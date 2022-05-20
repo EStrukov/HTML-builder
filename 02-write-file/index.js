@@ -6,8 +6,6 @@ const path = require('path');
 const fs = require('fs');
 const pathText = path.resolve(__dirname, 'text.txt');
 let text = '';
-// let reading = fs.createReadStream('text.txt', 'utf-8');
-// let texting = fs.createWriteStream('text.txt');
 
 
 
