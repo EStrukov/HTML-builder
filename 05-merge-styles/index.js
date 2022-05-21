@@ -12,7 +12,7 @@ function fileAddinfo(path, data) {
   });
 }
 
-function creteBundle() {
+function createBundle() {
   console.log('Запустите project-dist/index.html на лайв-сервере! Красота?)');
   fs.readdir(styleFolder, (err, items) => {
     for (let i = 0; i < items.length; i++) {
@@ -31,9 +31,9 @@ function creteBundle() {
 fs.unlink(path.join(distFolder, 'bundle.css'), (err) => {
   if (!err) {
     // else console.log('Файл удалён');
-    creteBundle();
+    createBundle();
   } else {
-    creteBundle();
+    createBundle();
   }
 
 });

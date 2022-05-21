@@ -9,15 +9,15 @@ let text = '';
 
 
 
-stdout.write('Не судите строго, я не понимаю что делаю! Напишите что-нибудь! \n');
+stdout.write('Добро пожаловать, введите Ваш текст. \n');
 
 stdin.on('data', data => {
   if (data.toString().toLowerCase().trim() === 'exit') {
-    stdout.write('Было страшно, но оно работает!');
+    stdout.write('Спасибо, что выбрали нашу записывалку!');
     process.exit();
   } else {
     text = data.toString();
-    stdout.write('Мне кажется, что этой информации недостаточно! \n');
+    stdout.write('Желаете дополнить? Для выхода введите "exit" или нажмите ctrl+c \n');
     fs.appendFile(pathText,
       text,
       (err) => {
@@ -38,7 +38,7 @@ stdin.on('data', data => {
 // });
 
 process.on('SIGINT', () => {
-  stdout.write('Было страшно, но оно работает!');
+  stdout.write('Спасибо, что выбрали нашу записывалку!');
   process.exit();
 });
 // process.on('exit', () => {
