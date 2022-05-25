@@ -1,61 +1,60 @@
 const path = require('path');
 const fs = require('fs');
 
-const filesForCopy = path.resolve(__dirname, 'files');
+
+const files = path.resolve(__dirname, 'files');
 const copyFiles = path.resolve(__dirname, 'files-copy');
 
 
-// fs.mkdir(copyFiles, {recursive: true}, () => {});
+fs.mkdir(copyFiles, {recursive: true}, () => {});
 
-// fs.stat(copyFiles, function (err) {
-//   if (!err) {
-//     fs.readdir(copyFiles, (err, items) => {
-//       for (let i = 0; i < items.length; i++) {
-//         fs.unlink(path.join(copyFiles, items[i]), (err) => {
-//           if (err) console.log(err);
-//           else console.log('Файл удалён');
-//         });
-//       }
-//       fs.readdir(filesForCopy, (err, items) => {
-//         console.log('Накопировал для вас тут');
-//         for (let i = 0; i < items.length; i++) {
-//           console.log(items[i]);
-//           fs.copyFile(path.join(filesForCopy, items[i]), path.join(copyFiles, items[i]), () => {});
-//         }
-//       });
-//     });
-//   }
-// });
-
-async function funcOne() {
-  fs.stat(copyFiles, function (err) {
-    if (!err) {
-      fs.readdir(copyFiles, (err, items) => {
+fs.stat(copyFiles, function (err) {
+  if (!err) {
+    fs.readdir(copyFiles, (err, items) => {
+      for (let i = 0; i < items.length; i++) {
+        fs.unlink(path.join(copyFiles, items[i]), (err) => {
+          if (err) console.log(err);
+        });
+      }
+      fs.readdir(files, (err, items) => {
+        console.log('Накопировал для вас тут');
         for (let i = 0; i < items.length; i++) {
-          fs.unlink(path.join(copyFiles, items[i]), (err) => {
-            if (err) console.log(err);
-            // else console.log('Файл удалён');
-          });
+          fs.copyFile(path.join(files, items[i]), path.join(copyFiles, items[i]), () => {});
         }
-        funcTwo();
       });
-    }
-  });
+    });
+  }
+});
+
+// async function funcOne() {
+//   fs.stat(copyFiles, function (err) {
+//     if (!err) {
+//       fs.readdir(copyFiles, (err, items) => {
+//         for (let i = 0; i < items.length; i++) {
+//           fs.unlink(path.join(copyFiles, items[i]), (err) => {
+//             if (err) console.log(err);
+//             // else console.log('Файл удалён');
+//           });
+//         }
+//         funcTwo();
+//       });
+//     }
+//   });
   
-}
+// }
 
-async function funcTwo() {
-  fs.mkdir(copyFiles, {recursive: true}, () => {});
-  fs.readdir(filesForCopy, (err, items) => {
-    console.log('Файлы успешно скопированы');
-    for (let i = 0; i < items.length; i++) {
-      // console.log(items[i]);
-      fs.copyFile(path.join(filesForCopy, items[i]), path.join(copyFiles, items[i]), () => {});
-    }
-  });
-}
+// async function funcTwo() {
+//   fs.mkdir(copyFiles, {recursive: true}, () => {});
+//   fs.readdir(filesForCopy, (err, items) => {
+//     console.log('Файлы успешно скопированы');
+//     for (let i = 0; i < items.length; i++) {
+//       // console.log(items[i]);
+//       fs.copyFile(path.join(filesForCopy, items[i]), path.join(copyFiles, items[i]), () => {});
+//     }
+//   });
+// }
 
-funcOne();
+// funcOne();
 
 // async function makeAll() {
 //   await funcOne();
