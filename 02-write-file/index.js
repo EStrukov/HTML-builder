@@ -8,7 +8,7 @@ const pathText = path.resolve(__dirname, 'text.txt');
 let text = '';
 
 
-
+fs.open(pathText, 'w', ()=>{});
 stdout.write('Добро пожаловать, введите Ваш текст. \n');
 
 stdin.on('data', data => {
